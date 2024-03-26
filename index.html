@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Down Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: montserrat, sans-serif;
+            font-weight: 300;
+        }
+
+        .container{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h2{
+            text-transform: uppercase;
+            letter-spacing: 10px;
+        }
+        .timer{
+            font-size: 8rem;
+        }
+
+        #theText{
+            font-size: 3rem;
+            font-weight: 700;
+            margin-top: 10px;
+            
+        }
+
+        #button{
+            font-size: 3rem;
+            padding: 5px 30px;
+            margin: 10px;
+            border: none;
+            background-color: gold;
+            cursor: pointer;
+
+            transition: all 0.1s ease;
+        }
+
+        #button:hover{
+            background-color: black;
+            color: white;
+        }
+
+        #button:active{
+            background-color: gold;
+        }
+
+
+        @media(max-width: 820px){
+            .timer{
+                text-align: center;
+                font-size: 5rem;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Count-down</h2>
+        <div class="timer">Click to start!</div>
+        <button id="button">Start</button>
+        <div>Yes or No?</div>
+        <div id="theText">...</div>
+    </div>
+
+
+    <script>
+        const isTimer = document.querySelector(".timer");
+        const theText = document.querySelector("theText");
+
+        // setTimeout()
+
+
+
+        const list =["Yes",
+                    "No"];
+       
+        const button = document.getElementById("button");
+
+        button.addEventListener("click", countDown);
+
+        function countDown() {
+            for (let i = 5; i >= 0; i--) {
+                setTimeout((num) => {
+                    isTimer.textContent = num;
+                }, (5 - i) * 1000, i);
+            }
+            setTimeout(() => {
+                    let randomNumber = Math.floor(Math.random() * 2);
+                    document.getElementById("theText").textContent = `${list[randomNumber]}`;
+            }, 5000);
+
+            
+        }
+
+
+
+        
+    </script>
+</body>
+</html>
